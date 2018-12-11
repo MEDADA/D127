@@ -1,0 +1,19 @@
+/*listMoveUp*/
+.listMoveUp-enter{
+  margin-top:50px;
+}
+.listMoveUp-enter-active{
+  transition:all .5s ease-in-out
+}
+.listMoveUp-enter-to{
+  margin-top:20px;
+}
+.listMoveUp-leave{
+
+}
+.listMoveUp-leave-active{
+
+}
+.listMoveUp-leave-to{
+
+}
