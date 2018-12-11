@@ -15,6 +15,7 @@
           </div>
           <div class="goods-right" v-text="goods.updateTime"></div>
         </div>
+
       </delay-show>
     </div>
   </div>
