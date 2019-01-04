@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <button @click="add()">ADD</button>
     <div class="goodsList">
       <delay-show>
@@ -15,7 +13,6 @@
           </div>
           <div class="goods-right" v-text="goods.updateTime"></div>
         </div>
-
       </delay-show>
     </div>
   </div>

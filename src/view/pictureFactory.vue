@@ -13,7 +13,7 @@
             <delay-show>
               <div class="list-img-item" v-for="(img,index) in imgLeftList" :key="img.url" :data-index="index">
                 <div class="list-img-item-poster">
-                  <img :src="img.url">
+                  <img :src="img.url" @click="imgPreview">
                 </div>
                 <div class="list-img-item-info">
                   <div class="list-img-item-info-left">
@@ -35,7 +35,7 @@
             <delay-show>
               <div class="list-img-item" v-for="(img,index) in imgRightList" :key="img.url" :data-index="index">
                 <div class="list-img-item-poster">
-                  <img :src="img.url">
+                  <img :src="img.url" @click="imgPreview">
                 </div>
                 <div class="list-img-item-info">
                   <div class="list-img-item-info-left">
@@ -58,7 +58,7 @@
           <delay-show>
             <div class="list-img-item" v-for="(img,index) in imgList" :key="img.url" :data-index="index">
               <div class="list-img-item-poster">
-                <img :src="img.url">
+                <img :src="img.url" @click="imgPreview">
               </div>
               <div class="list-img-item-info">
                 <div class="list-img-item-info-left">
@@ -77,15 +77,20 @@
           </delay-show>
         </div>
       </div>
+      <image-preview :src="previewSrc" :data="previewData" :show="previewShow" @close="closePreview"></image-preview>
     </div>
 </template>
 
 <script>
   import delayShow from '@/components/delayShow'
+  import imagePreview from '@/components/imagePreview'
     export default {
         name: "pictureFactory",
       data(){
           return{
+            previewSrc:'',
+            previewData:[],
+            previewShow:false,
             imgListMode:'waterfall',
             modeList:[
               {
@@ -168,11 +173,23 @@
           },
           imgModeChange(mode){
             this.imgListMode = mode || '';
+          },
+          imgPreview($event){
+            this.previewSrc = $event.target.src;
+            this.previewShow = true;
+          },
+          closePreview(){
+            this.previewShow = false;
           }
       },
       components:{
-        'delay-show':delayShow
-      }
+        'delay-show':delayShow,
+        'image-preview':imagePreview
+      },
+      directives:{
+
+      },
+      mixins:[]
     }
 </script>
 

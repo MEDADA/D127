@@ -30,6 +30,12 @@
                 icon:'',
                 intro:'Idea factory',
                 path:'/pictureFactory'
+              },
+              {
+                title:'E chart',
+                icon:'',
+                intro:'chart',
+                path:'/chart'
               }
             ]
           }

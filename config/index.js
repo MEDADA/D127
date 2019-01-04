@@ -15,7 +15,7 @@ module.exports = {
     // Various Dev Server settings
     host: '192.168.18.29', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: false,  //set 自动打开浏览器
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
@@ -24,7 +24,6 @@ module.exports = {
     /**
      * Source Maps
      */
-
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'source-map',
 
@@ -38,12 +37,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/index.html'),  //设置入口文件
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsRoot: path.resolve(__dirname, '../dist'),  //build 的根目录
+    assetsSubDirectory: 'static',  //  静态文件的目录
+    assetsPublicPath: './',  //静态路径
 
     /**
      * Source Maps

@@ -4,7 +4,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state:{
     system:{
-      color:'#009688'
+      color:'#272733',
+      colorValue:'#ccc',
+      colorLabel:'#999'
     },
     userInfo:{
       username:String,

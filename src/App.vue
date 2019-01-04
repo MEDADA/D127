@@ -9,12 +9,20 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+
+    }
+  },
+  created(){
+
+  }
 }
 </script>
-
-<style>
-#app {
-  font-family:'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'
-}
+<style lang="scss" scoped>
+  #app {
+    font-family:'Visby CF'
+  }
 </style>
+
