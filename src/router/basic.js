@@ -7,6 +7,7 @@ const error = () => import(/* webpackChunkName: "group-error"*/'@/view/error');
 // split module
 import pictureFactory from '@/router/pictureFactory'
 import homeChild from '@/router/homeChild';
+import chart from '@/router/chart'
 export default [
   {
     name:'error',
@@ -54,5 +55,6 @@ export default [
     },
     component:goodsList
   },
-  pictureFactory
+  pictureFactory,
+  chart,
 ]

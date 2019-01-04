@@ -13,6 +13,8 @@ exports.assetsPath = function (_path) {
 }
 
 exports.cssLoaders = function (options) {
+
+
   options = options || {}
 
   const cssLoader = {
@@ -26,6 +28,30 @@ exports.cssLoaders = function (options) {
     loader: 'postcss-loader',
     options: {
       sourceMap: options.sourceMap
+    }
+  }
+
+  //sass全局文件引入方法
+  function generateSassResourceLoader () {
+    var loaders = [
+      cssLoader,
+      'sass-loader',
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.resolve(__dirname, '../src/assets/var.scss'),
+          ]
+        }
+      }
+    ];
+    if (options.extract) {
+      return ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: 'vue-style-loader'
+      })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
     }
   }
 
@@ -60,7 +86,14 @@ exports.cssLoaders = function (options) {
     postcss: generateLoaders(),
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    scss: generateLoaders('sass').concat(
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: path.resolve(__dirname, '../src/assets/css/var.scss')
+        }
+      }
+    ),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

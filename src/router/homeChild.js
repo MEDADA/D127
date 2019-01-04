@@ -1,6 +1,7 @@
 const user = () => import(/* webpackChunkName: "group-user"*/'@/view/user');
 const goodsList = () => import(/* webpackChinkName: "group-goodsList"*/'@/view/goodsList')
 const appList = () => import(/* webpackChinkName: "group-appList"*/'@/view/appList')
+const friends = () => import(/* webpackChinkName: "group-friends"*/'@/view/friends')
 export default [
     {
       name: 'home',
@@ -40,7 +41,7 @@ export default [
         require: true,
         cache: true
       },
-      component: user
+      component: friends
     }
 ]
 
