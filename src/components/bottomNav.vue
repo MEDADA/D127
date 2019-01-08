@@ -1,7 +1,7 @@
 <template>
     <div class="bottom-nav">
       <mu-bottom-nav :value.sync="shift" shift>
-        <mu-bottom-nav-item :to="n.path" :value="n.value" :title="n.title" :icon="n.icon" v-for="(n,index) in nav" :key="index"></mu-bottom-nav-item>
+        <mu-bottom-nav-item :to="n.path" :value="n.value" :title="n.title" v-for="(n,index) in nav" :key="index" :class="['iconfont',n.icon]"></mu-bottom-nav-item>
       </mu-bottom-nav>
     </div>
 </template>
@@ -16,22 +16,22 @@
               {
                 value:'app',
                 title:'APP',
-                icon:'dashboard',
+                icon:'icon-grid-outline',
                 path:'/'
               },{
                 value:'goodsList',
                 title:'GOODS',
-                icon:'clear_all',
+                icon:'icon-list-outline',
                 path:'/goodsList'
               },{
                 value:'friends',
                 title:'FRIENDS',
-                icon:'mail',
+                icon:'icon-people-outline',
                 path:'/friends'
               },{
                 value:'user',
                 title:'USER',
-                icon:'person',
+                icon:'icon-person-outline',
                 path:'/user'
               }
             ]
@@ -53,10 +53,17 @@
 
 <style scoped>
 .bottom-nav{
-  position:fixed;
+  position:absolute;
   bottom:0;
   left:0;
   right:0;
   z-index:999
 }
+  .iconfont{
+    font-size:1.5rem;
+    line-height: 1.2rem;
+  }
+  .mu-bottom-nav{
+    height:auto;
+  }
 </style>

@@ -4,7 +4,8 @@
       <div class="home-title">Picture Factory</div>
       <div class="list-mode">
         <div class="list-mode-item" v-for="mode in modeList" @click="imgModeChange(mode.value)" :class="{active:imgListMode === mode.value}">
-          <mu-icon :value="mode.icon"></mu-icon>
+          <!--<mu-icon :value="mode.icon"></mu-icon>-->
+          <span v-text="mode.value"></span>
         </div>
       </div>
       <div class="list-img">
@@ -18,7 +19,7 @@
                 <div class="list-img-item-info">
                   <div class="list-img-item-info-left">
                     <div>
-                      <mu-icon value="favorite" class="list-img-item-great"></mu-icon>
+                      <span :class="['list-img-item-great','iconfont','icon-heart-outline']"></span>
                     </div>
                     <div>
                       <span v-text="img.greatNum" class="list-img-item-num"></span>
@@ -40,7 +41,7 @@
                 <div class="list-img-item-info">
                   <div class="list-img-item-info-left">
                     <div>
-                      <mu-icon value="favorite" class="list-img-item-great"></mu-icon>
+                      <span :class="['list-img-item-great','iconfont','icon-heart-outline']"></span>
                     </div>
                     <div>
                       <span v-text="img.greatNum" class="list-img-item-num"></span>
@@ -63,7 +64,7 @@
               <div class="list-img-item-info">
                 <div class="list-img-item-info-left">
                   <div>
-                    <mu-icon value="favorite" class="list-img-item-great"></mu-icon>
+                    <span :class="['list-img-item-great','iconfont','icon-heart-outline']"></span>
                   </div>
                   <div>
                     <span v-text="img.greatNum" class="list-img-item-num"></span>
@@ -127,7 +128,28 @@
                 url:require('../assets/img/wallhaven-712830.png'),
                 userImg:require('../assets/img/wallhaven-683165.jpg'),
                 greatNum:'42'
+              },
+              {
+                url:require('../assets/img/wallhaven-731803.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
+              },
+              {
+                url:require('../assets/img/wallhaven-731847.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
+              },
+              {
+                url:require('../assets/img/wallhaven-732222.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
+              },
+              {
+                url:require('../assets/img/wallhaven-732226.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
               }
+
             ],
             imgList:[],
             imgLeftList:[],
