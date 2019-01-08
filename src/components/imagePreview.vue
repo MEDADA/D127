@@ -2,8 +2,8 @@
   <div>
     <transition name="fade">
       <div class="wrap" v-if="show">
-        <img :src="src" width="100%" v-init="close" class="preview-content">
-        <div class="preview-mask" @click="close"></div>
+          <img :src="src" width="100%" v-drag.stop="close" class="preview-content">
+        <div class="preview-mask" @click="close" v-disable-touch-move></div>
       </div>
     </transition>
   </div>
@@ -34,9 +34,18 @@
       },
       props:['src','show','data'],
       directives:{
-        init:{
+        drag:{
           inserted:function (el,binding) {
-            console.log(el)
+            let startX = 0;
+            let startY = 0;
+            let moveX = 0;
+            let moveY = 0;
+            let startTime = 0;
+            let endTime = 0;
+            let scale = 1;
+            let x = 0;
+            let y = 0;
+
             let innerW = window.innerWidth;
             let innerH = window.innerHeight;
             let imgInitW = el.naturalWidth;
@@ -47,34 +56,68 @@
             el.height = imgH;
             el.width = imgW;
             el.style.marginTop = (innerH - imgH) / 2 + 'px';
-            let startX = 0;
-            let startY = 0;
-            let moveX = 0;
-            let moveY = 0;
+
+            function transformHandle(x,y,scale){
+              let _x = x || 0;
+              let _y = y || 0;
+              let _scale = scale || 1;
+              el.style.transform = 'translate('+_x+'px,'+_y+'px) scale('+_scale+','+_scale+')';
+            }
+
             el.ontouchstart = function (e) {
-              e.preventDefault()
+              binding.modifiers.stop ? e.preventDefault() : function(){};
               startX = e.targetTouches[0].pageX;
               startY = e.targetTouches[0].pageY;
-              el.style.transform = 'translate(0px,0px)';
+            //在touch事件中，如果没move则不执行move所以需要对move数值初始化  用于执行双击判断
+              moveX = 0;
+              moveY = 0;
             };
             el.ontouchmove = function (e) {
-              e.preventDefault()
-              el.style.transition = 'none';
+              binding.modifiers.stop ? e.preventDefault() : function(){};
               moveX = e.targetTouches[0].pageX - startX;
               moveY = e.targetTouches[0].pageY - startY;
-              el.style.transform = 'translate('+moveX+'px,'+moveY+'px)';
+              el.style.transition = 'none';
+              transformHandle(x+moveX,y+moveY,scale);
             };
             el.ontouchend = function (e) {
-              e.preventDefault()
-              el.style.transition = 'all .3s ease-out';
-              if(moveY > 200 || moveY < -200){
-                el.style.transform = 'translate('+0+'px,'+window.innerHeight+'px)';
+              //是否禁用事件冒泡
+              binding.modifiers.stop ? e.preventDefault() : function(){};
+              //判断双击点击间隔
+              let time = new Date();
+              startTime = endTime;
+              endTime = time.getTime();
+              //图片内部移动
+              x += moveX;
+              y += moveY;
+              //是否双击
+              if(moveY < 20 && moveY > -20 && moveX < 20 && moveX > -20 && endTime - startTime < 300){
+                endTime = 0;
+                if(scale > 1.9){
+                  scale = 1;
+                }else{
+                  scale += 0.3;
+                }
+                el.style.transition = 'all .3s ease-out';
+                transformHandle(x,y,scale);
+              }else if(moveY > 200 || moveY < -200){
                 let close = binding.value;
-                close()
+                close();
+                el.style.transition = 'all .3s ease-out';
+                transformHandle(0,window.innerHeight,scale);
               }else{
-                el.style.transform = 'translate(0px,0px)';
+                // x = 0;
+                // y = 0;
+                // el.style.transition = 'all .3s ease-out';
+                // transformHandle(x,y,scale);
               }
             };
+          }
+        },
+        'disable-touch-move':{
+          inserted:function (el) {
+            el.ontouchmove = function (e) {
+              e.preventDefault();
+            }
           }
         }
       }

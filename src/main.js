@@ -7,7 +7,6 @@ import instance from './http/http.js';
 import store from './store/store'
 import MuseUI from 'muse-ui';
 
-
 import 'muse-ui/dist/muse-ui.css';
 import './assets/css/animation.css';
 Vue.use(MuseUI);
