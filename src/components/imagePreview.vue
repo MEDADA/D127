@@ -99,16 +99,11 @@
                 }
                 el.style.transition = 'all .3s ease-out';
                 transformHandle(x,y,scale);
-              }else if(moveY > 200 || moveY < -200){
+              }else if(moveY > 300 || moveY < -300){
                 let close = binding.value;
                 close();
                 el.style.transition = 'all .3s ease-out';
                 transformHandle(0,window.innerHeight,scale);
-              }else{
-                // x = 0;
-                // y = 0;
-                // el.style.transition = 'all .3s ease-out';
-                // transformHandle(x,y,scale);
               }
             };
           }

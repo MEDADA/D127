@@ -3,7 +3,7 @@
     <button @click="add()">ADD</button>
     <div class="goodsList">
       <delay-show>
-        <div class="goodsItem" v-for="(goods,index) in goodsList" :key="index" :data-index="index">
+        <div class="goodsItem" v-for="(goods,index) in goodsList" :key="index" :data-index="index" @click="$router.push('/goodsDetail')">
           <div class="goods-img">
             <img :src="goods.image" alt="">
           </div>

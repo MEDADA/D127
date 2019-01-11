@@ -3,6 +3,7 @@ const home = () => import(/* webpackChunkName: "group-home"*/'@/view/home');
 const login = () => import(/* webpackChunkName: "group-login"*/'@/view/login');
 const welcome = () => import(/*webpackChunkName: "welcome"*/'@/view/welcome');
 const goodsList = () => import(/*webpackChunkName: "goodsList"*/'@/view/goodsList');
+const goodsDetail = () => import(/*webpackChunkName: "goodsDetail"*/'@/view/goodsDetail');
 const error = () => import(/* webpackChunkName: "group-error"*/'@/view/error');
 // split module
 import pictureFactory from '@/router/pictureFactory'
@@ -51,9 +52,19 @@ export default [
     meta:{
       title:'商品列表',
       require:false,
-      cache:false
+      cache:true
     },
     component:goodsList
+  },
+  {
+    name:'goodsDetail',
+    path:'/goodsDetail',
+    meta:{
+      title:'商品详细',
+      require:false,
+      cache:false
+    },
+    component:goodsDetail
   },
   pictureFactory,
   chart,
