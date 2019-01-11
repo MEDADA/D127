@@ -1,7 +1,7 @@
 <template>
     <div>
       <bottom-nav value="$route.path"></bottom-nav>
-      <router-view></router-view>
+      <router-view class="scroll"></router-view>
     </div>
 </template>
 
@@ -15,6 +15,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

@@ -8,11 +8,11 @@
           <span v-text="mode.value"></span>
         </div>
       </div>
-      <div class="list-img">
+      <div class="list-img" ref="imgList">
         <div class="list-img-mode-waterfall" v-if="imgListMode === 'waterfall'">
           <div class="list-img-left">
             <delay-show>
-              <div class="list-img-item" v-for="(img,index) in imgLeftList" :key="img.url" :data-index="index">
+              <div class="list-img-item" v-for="(img,index) in imgLeftList" :key="index" :data-index="index">
                 <div class="list-img-item-poster">
                   <img :src="img.url" @click="imgPreview">
                 </div>
@@ -34,7 +34,7 @@
           </div>
           <div class="list-img-right">
             <delay-show>
-              <div class="list-img-item" v-for="(img,index) in imgRightList" :key="img.url" :data-index="index">
+              <div class="list-img-item" v-for="(img,index) in imgRightList" :key="index" :data-index="index">
                 <div class="list-img-item-poster">
                   <img :src="img.url" @click="imgPreview">
                 </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="list-img-mode-wide" v-if="imgListMode === 'wide'">
           <delay-show>
-            <div class="list-img-item" v-for="(img,index) in imgList" :key="img.url" :data-index="index">
+            <div class="list-img-item" v-for="(img,index) in imgList" :key="index" :data-index="index">
               <div class="list-img-item-poster">
                 <img :src="img.url" @click="imgPreview">
               </div>
@@ -148,8 +148,17 @@
                 url:require('../assets/img/wallhaven-732226.png'),
                 userImg:require('../assets/img/wallhaven-683165.jpg'),
                 greatNum:'150002212'
+              },
+              {
+                url:require('../assets/img/wallhaven-732222.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
+              },
+              {
+                url:require('../assets/img/wallhaven-732226.png'),
+                userImg:require('../assets/img/wallhaven-683165.jpg'),
+                greatNum:'150002212'
               }
-
             ],
             imgList:[],
             imgLeftList:[],
@@ -158,6 +167,9 @@
       },
       created(){
         this.imageInit();
+      },
+      mounted(){
+
       },
       methods:{
           imageInit(){
@@ -168,25 +180,26 @@
             let imgData = this.imgData;
             let leftH = 0;
             let rightH = 0;
+            let len = 5;
             for(let i = 0; i < imgData.length ; i++){
               let url = imgData[i].url;
               let img = new Image();
               img.src = url;
               let self = this;
               img.onload = function(){
-                let height = img.height;
-                let width = img.width;
-                let scale = height / width;
-                if(leftH <= rightH){
-                  self.imgLeftList.push(imgData[i]);
-                  leftH += scale;
-                }else{
-                  self.imgRightList.push(imgData[i]);
-                  rightH += scale;
-                }
-                img.onload = function () {
-                  return false
-                };
+                  let height = img.height;
+                  let width = img.width;
+                  let scale = height / width;
+                  if(leftH <= rightH){
+                    self.imgLeftList.push(imgData[i]);
+                    leftH += scale;
+                  }else{
+                    self.imgRightList.push(imgData[i]);
+                    rightH += scale;
+                  }
+                  img.onload = function () {
+                    return false
+                  };
               }
             }
           },
@@ -216,6 +229,15 @@
 </script>
 
 <style scoped>
+  .list-img{
+    overflow:hidden;
+  }
+  .list-img-mode-waterfall{
+    overflow:hidden;
+  }
+  .list-img-mode-wide{
+    overflow:hidden;
+  }
   .home-header{
 
   }

@@ -1,7 +1,7 @@
 <template>
     <div class="bottom-nav">
       <mu-bottom-nav :value.sync="shift" shift>
-        <mu-bottom-nav-item :to="n.path" :value="n.value" :title="n.title" v-for="(n,index) in nav" :key="index" :class="['iconfont',n.icon]"></mu-bottom-nav-item>
+        <mu-bottom-nav-item :to="n.path" :replace="true" :value="n.value" :title="n.title" v-for="(n,index) in nav" :key="index" :class="['iconfont',n.icon]"></mu-bottom-nav-item>
       </mu-bottom-nav>
     </div>
 </template>
