@@ -72,7 +72,7 @@
     <div class="list-row flex">
       <span :style="{color:$store.state.system.colorLabel}">Whom to follow</span>
       <mu-button icon>
-        <span class="iconfont icon-arrow-ios-forward-ou"></span>
+        <span class="iconfont icon-jinru"></span>
       </mu-button>
     </div>
     <div class="list-row">
