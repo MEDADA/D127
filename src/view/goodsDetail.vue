@@ -7,9 +7,9 @@
     <div class="container scroll">
       <div class="goods-slide">
         <div class="slide-swipe" :style="{width:initSwipeContent()}"
-             v-swipe="{slideIndex:setSlideIndex,len:slideImg.length}">
+             v-swipe="{slideIndex:setSlideIndex,len:slideImg.length,slideChange:slideChange}" ref="slideSwipe">
           <div class="slide-swipe-item" v-for="(img,index) in slideImg" :key="index">
-            <img :src="img.url" v-color-thief="{color:setImageMainArray}">
+            <img :src="img.url">
           </div>
         </div>
         <div class="goods-slide-index">
@@ -20,7 +20,9 @@
         <div class="goods-name">
           <span>Goods one</span>
           <div>
-            <span class="show-color-box" v-for="rgb in imageMainArray" :style="{backgroundColor:'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')'}"></span>
+            <transition name="fadeIn" v-for="(rgb,index) in imageMainArray" :key="index">
+              <span class="show-color-box" :style="{backgroundColor:'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')'}"></span>
+            </transition>
           </div>
         </div>
         <div class="list-row">
@@ -61,7 +63,10 @@
         imageMainColor:'rgba(255,255,255,1)',
         imageMainArray:[],
         slideImg: [
-          {url: require('../assets/img/wallhaven-732226.png')}
+          {url: require('../assets/img/wallhaven-305198.jpg')},
+          {url: require('../assets/img/wallhaven-683165.jpg')},
+          {url: require('../assets/img/wallhaven-683931.jpg')},
+          {url: require('../assets/img/wallhaven-683989.jpg')},
         ]
       }
     },
@@ -69,9 +74,7 @@
 
     },
     mounted(){
-
-
-
+      this.getSwipeMainColors(0)
     },
     methods: {
       onTap() {
@@ -86,13 +89,25 @@
       setSlideIndex(ind) {
         this.slideIndex = ind
       },
-      setImageMainColor(rgb){
-        let _rgb = rgb || 'rgba(0,0,0,1)';
-        console.log(_rgb)
-        this.imageMainColor = _rgb;
-      },
       setImageMainArray(array){
         this.imageMainArray = array
+      },
+      slideChange(index){
+        let img = this.$refs.slideSwipe.childNodes[index].firstChild;
+        this.getMainColors(img);
+      },
+      getSwipeMainColors(index){
+        let img = this.$refs.slideSwipe.childNodes[index].firstChild;
+        let self = this;
+        img.onload = function(){
+          self.getMainColors(img);
+          img.onload = function(){};
+        };
+      },
+      getMainColors(img){
+        let colorThief = new ColorThief();
+        let rgb = colorThief.getPalette(img,5);
+        this.setImageMainArray(rgb);
       }
     },
     directives: {
@@ -110,24 +125,27 @@
             index++;
             if (index > len) index = len;
             el.style.transition = transition;
-            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)'
+            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)';
+            bind.value.slideChange(index);
           }
 
           function previous() {
             index--;
             if (index < 0) index = 0;
             el.style.transition = transition;
-            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)'
+            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)';
+            bind.value.slideChange(index);
           }
 
           function goBack() {
             el.style.transition = transition;
-            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)'
+            el.style.transform = 'translateX(' + (x = -(index * winX)) + 'px)';
           }
 
           el.ontouchstart = function (e) {
             e.preventDefault();
             startX = e.targetTouches[0].pageX
+            moveX = 0;
           };
           el.ontouchmove = function (e) {
             e.preventDefault();
@@ -147,15 +165,6 @@
             }
             bind.value.slideIndex(index);
           };
-        }
-      },
-      'color-thief':{
-        inserted:function(el,bind){
-          el.onload = function () {
-            let colorThief = new ColorThief();
-            let rgb = colorThief.getPalette(el,5);
-            bind.value.color(rgb);
-          }
         }
       }
     }
@@ -280,6 +289,7 @@
     width:1rem;
     height:1rem;
     margin:0 10px;
+    transition:all .3s ease;
   }
   .list-row {
     display: flex;

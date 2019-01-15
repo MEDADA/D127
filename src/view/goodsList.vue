@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="add()">ADD</button>
     <div class="goodsList">
+      <button @click="add()">ADD</button>
       <delay-show>
         <div class="goodsItem" v-for="(goods,index) in goodsList" :key="index" :data-index="index" @click="$router.push('/goodsDetail')">
           <div class="goods-img">
@@ -143,9 +143,11 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .goodsList{
-  background-color: #f1f1f1;
+  background-color: $bgColor;
+  min-height:100%;
+  overflow:hidden
 }
   .goodsItem{
     background-color: #fff;
