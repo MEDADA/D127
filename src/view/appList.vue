@@ -36,6 +36,30 @@
                 icon:'',
                 intro:'chart',
                 path:'/chart'
+              },
+              {
+                title:'image lazy load',
+                icon:'',
+                intro:'lazy load',
+                path:'/imageLazyLoad'
+              },
+              {
+                title:'render dom list',
+                icon:'',
+                intro:'render dom list',
+                path:'/renderDomList'
+              },
+              {
+                title:'upload',
+                icon:'',
+                intro:'upload images',
+                path:'/uploadDemo'
+              },
+              {
+                title:'keepalive component switch not keepalive component , error test',
+                icon:'',
+                intro:' switch not keepalive component , error test',
+                path:'/keepaliveTestDemo'
               }
             ]
           }
@@ -68,6 +92,7 @@
 .appList{
   background-color: #f5f5f5;
   display:flex;
+  flex-wrap:wrap;
 }
 .appItem{
   width:40vw;

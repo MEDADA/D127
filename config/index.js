@@ -10,17 +10,52 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/common/*': {
+        target: 'http://localhost:3000', //开发
+        changeOrigin: true,
+        pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+          '^/common': ''
+        }
+      },
+      '/images/*': {
+        target: 'http://localhost:3000', //开发
+        changeOrigin: true,
+        pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+          '^/images': ''
+        }
+      },
+      '/users/*': {
+        target: 'http://localhost:3000', //开发
+        changeOrigin: true,
+        pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+          '^/users': '/users'
+        }
+      },
+      '/blog/*': {
+        target: 'http://localhost:3000', //开发
+        changeOrigin: true,
+        pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+          '^/blog': '/blog'
+        }
+      },
+      '/serviceEgg/*': {
+        target: 'http://localhost:7001', //开发
+        changeOrigin: true,
+        pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+          '^/serviceEgg': ''
+        }
+      },
+    },
     // Various Dev Server settings
-    host: '192.168.18.29', // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 1277, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,  //set 自动打开浏览器
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

@@ -1,7 +1,9 @@
 <template>
     <div>
       <bottom-nav value="$route.path"></bottom-nav>
-      <router-view class="scroll"></router-view>
+      <keep-alive :include="$store.state.cacheRoutes">
+        <router-view class="scroll"></router-view>
+      </keep-alive>
     </div>
 </template>
 

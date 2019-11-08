@@ -1,23 +1,24 @@
 import axios from 'axios';
 import qs from 'qs';
 import router from '../router/index.js'
+
 const instance = axios.create({
-  timeout: 10000,
+  timeout: 10000
 });
 
-instance.defaults.withCredentials=true;//让ajax携带cookie
+instance.defaults.withCredentials = true;//让ajax携带cookie
 
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'; //配置请求头
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  if(config.headers['Content-Type'] != 'multipart/form-data'){
-    config.data = qs.stringify(config.data,{arrayFormat: 'brackets'}); // 解决预检测请求
+  if (config.headers['Content-Type'] != 'multipart/form-data') {
+    config.data = qs.stringify(config.data, {arrayFormat: 'brackets'}); // 解决预检测请求
   }
   return config;
 }, function (error) {
   // 对请求错误做些什么
-  return Promise.reject(error );
+  return Promise.reject(error);
 });
 
 // 添加响应拦截器
@@ -75,4 +76,14 @@ instance.interceptors.response.use(function (res) {
   // 对请求错误做些什么
   return Promise.reject(error);
 });
-export default instance;
+
+let api = (method, url, data = null, config) => {
+  let _method = method.toLowerCase();
+  if (_method === 'post') {
+    return instance.post(url, data, config)
+  } else if (_method === 'get') {
+    return instance.get(url, data, config)
+  }
+};
+
+export default api;

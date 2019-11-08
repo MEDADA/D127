@@ -3,45 +3,46 @@ const goodsList = () => import(/* webpackChinkName: "group-goodsList"*/'@/view/g
 const appList = () => import(/* webpackChinkName: "group-appList"*/'@/view/appList')
 const friends = () => import(/* webpackChinkName: "group-friends"*/'@/view/friends')
 export default [
-    {
-      name: 'home',
-      path: '/',
-      meta: {
-        title: 'home',
-        require: true,
-        cache: true
-      },
-      component: appList
+  {
+    name: 'home',
+    path: '/home',
+    meta: {
+      title: 'home',
+      require: true,
+      keepalive: true
     },
-    {
-      name: 'user',
-      path: '/user',
-      meta: {
-        title: '用户中心',
-        require: true,
-        cache: true
-      },
-      component: user
+    component: appList
+  },
+  {
+    name: 'user',
+    path: '/user',
+    meta: {
+      title: '用户中心',
+      require: true,
+      keepalive: true
     },
-    {
+    component: user
+  },
+  {
     name: 'goodsList',
     path: '/goodsList',
     meta: {
       title: '商品列表',
       require: false,
-      cache: true
+      keepalive: true
     },
     component: goodsList
+  },
+  {
+    name: 'friends',
+    path: '/friends',
+    meta: {
+      include:'chatRoom',
+      title: '好友',
+      require: true,
+      keepalive: true
     },
-    {
-      name: 'friends',
-      path: '/friends',
-      meta: {
-        title: '好友',
-        require: true,
-        cache: true
-      },
-      component: friends
-    }
+    component: friends
+  }
 ]
 
