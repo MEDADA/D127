@@ -5,7 +5,7 @@ export default {
     meta: {
       title: '图片工厂',
       require: false,
-      cache: false
+      keepalive: false
     },
     component: pictureFactory,
     children:[

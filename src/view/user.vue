@@ -2,7 +2,7 @@
   <div class="user" :style="{backgroundColor:$store.state.system.color}">
     <div class="user-header">
       <div class="user-img">
-        <img :src="userInfo.img">
+        <img :src="userInfo.photo">
       </div>
       <div class="user-datum">
         <div class="user-datum-block" :style="{color:$store.state.system.colorValue}">
@@ -12,7 +12,7 @@
             @appear="enter"
             @after-appear="afterEnter"
           >
-            <div class="user-datum-value">{{userInfo.photoNum.toFixed(0)}}</div>
+            <div class="user-datum-value">{{userInfo.photoNum || 0}}</div>
           </transition>
           <div class="user-datum-label" :style="{color:$store.state.system.colorLabel}">Photos</div>
         </div>
@@ -23,7 +23,7 @@
             @appear="enter"
             @after-appear="afterEnter"
           >
-            <div class="user-datum-value" v-text="userInfo.follower"
+            <div class="user-datum-value" v-text="userInfo.follower || 0"
                  :style="{color:$store.state.system.colorValue}"></div>
           </transition>
           <div class="user-datum-label" :style="{color:$store.state.system.colorLabel}">Followers</div>
@@ -35,7 +35,7 @@
             @appear="enter"
             @after-appear="afterEnter"
           >
-            <div class="user-datum-value" v-text="userInfo.activity"
+            <div class="user-datum-value" v-text="userInfo.activity || 0"
                  :style="{color:$store.state.system.colorValue}"></div>
           </transition>
           <div class="user-datum-label" :style="{color:$store.state.system.colorLabel}">Activity</div>
@@ -51,22 +51,22 @@
         <span class="subLabel" :style="{color:$store.state.system.colorLabel}">Menu Info</span>
       </div>
       <div class="user-menu-content">
-        <div class="user-menu-box">
+        <mu-ripple class="user-menu-box">
           <div class="user-menu-box-value">5.5</div>
           <div class="user-menu-box-label">Height</div>
-        </div>
-        <div class="user-menu-box red">
+        </mu-ripple>
+        <mu-ripple class="user-menu-box red">
           <div class="user-menu-box-value">1.8</div>
           <div class="user-menu-box-label">Rate</div>
-        </div>
-        <div class="user-menu-box">
+        </mu-ripple>
+        <mu-ripple class="user-menu-box">
           <div class="user-menu-box-value">Blue</div>
           <div class="user-menu-box-label">Eyes</div>
-        </div>
-        <div class="user-menu-box blue">
+        </mu-ripple>
+        <mu-ripple class="user-menu-box blue" @click="$router.push('/collection')">
           <div class="user-menu-box-value">10+</div>
           <div class="user-menu-box-label">...</div>
-        </div>
+        </mu-ripple>
       </div>
     </div>
     <div class="list-row flex">
@@ -75,40 +75,40 @@
         <span class="iconfont icon-jinru"></span>
       </mu-button>
     </div>
-    <div class="list-row">
-      <div class="user-card">
-        <div class="user-card-header">
-          <span class="user-card-name" :style="{color:$store.state.system.colorValue}">Black Stone </span><span
-          class="subLabel" :style="{color:$store.state.system.colorLabel}">Rapper</span>
-        </div>
-        <div class="user-card-body">
-          <div class="user-card-poster"><img src="../assets/img/wallhaven-712830.png"></div>
-          <div class="user-card-handle">
-            <div class="user-card-tag">
-              <div class="up">10% ↑</div>
-              <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Popularity</div>
-            </div>
-            <div class="user-card-tag">
-              <div>Regular</div>
-              <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Activity</div>
-            </div>
-            <div class="user-card-follow">
-              <mu-button color="primary" full-width>Follow</mu-button>
-            </div>
-          </div>
-        </div>
-        <div class="user-card-footer">
-          <div class="user-card-label">
-            <div :style="{color:$store.state.system.colorValue}">1450</div>
-            <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Photos</div>
-          </div>
-          <div class="user-card-label">
-            <div :style="{color:$store.state.system.colorValue}">1.3 m</div>
-            <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Followers</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="list-row">-->
+<!--      <div class="user-card">-->
+<!--        <div class="user-card-header">-->
+<!--          <span class="user-card-name" :style="{color:$store.state.system.colorValue}">Black Stone </span><span-->
+<!--          class="subLabel" :style="{color:$store.state.system.colorLabel}">Rapper</span>-->
+<!--        </div>-->
+<!--        <div class="user-card-body">-->
+<!--          <div class="user-card-poster"><img src="../assets/img/wallhaven-712830.png"></div>-->
+<!--          <div class="user-card-handle">-->
+<!--            <div class="user-card-tag">-->
+<!--              <div class="up">10% ↑</div>-->
+<!--              <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Popularity</div>-->
+<!--            </div>-->
+<!--            <div class="user-card-tag">-->
+<!--              <div>Regular</div>-->
+<!--              <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Activity</div>-->
+<!--            </div>-->
+<!--            <div class="user-card-follow">-->
+<!--              <mu-button color="primary" full-width>Follow</mu-button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="user-card-footer">-->
+<!--          <div class="user-card-label">-->
+<!--            <div :style="{color:$store.state.system.colorValue}">1450</div>-->
+<!--            <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Photos</div>-->
+<!--          </div>-->
+<!--          <div class="user-card-label">-->
+<!--            <div :style="{color:$store.state.system.colorValue}">1.3 m</div>-->
+<!--            <div class="subtitle" :style="{color:$store.state.system.colorLabel}">Followers</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -119,38 +119,39 @@
     data() {
       return {
         number: 0,
-        tweenedNumber: 123123,
+        tweenedNumber: 0,
         userInfo: {
-          img: require('../assets/img/timg (1).jpg'),
-          name: 'Orange',
-          profession: 'Fashion Model',
-          photoNum: 0,
-          follower: '110035',
-          activity: 'Daily',
-          height: '1.8cm',
-          area: '杭州',
-          newPublish: {
-            poster: '',
-            title: '',
-            profession: 'rapper',
-            hotChange: {
-              type: 'up',
-              rate: '6%'
-            },
-            greatNum: '1564468',
-            follower: '8484654'
-          }
-
+          // img: require('../assets/img/timg (1).jpg'),
+          // name: 'Orange',
+          // profession: 'Fashion Model',
+          // photoNum: 0,
+          // follower: '110035',
+          // activity: 'Daily',
+          // height: '1.8cm',
+          // area: '杭州',
+          // newPublish: {
+          //   poster: '',
+          //   title: '',
+          //   profession: 'rapper',
+          //   hotChange: {
+          //     type: 'up',
+          //     rate: '6%'
+          //   },
+          //   greatNum: '1564468',
+          //   follower: '8484654'
+          // }
         }
       }
     },
     created() {
-
+      this.$store.commit('getUserDetail');
+      this.userInfo = this.$store.state.userInfo;
     },
     mounted() {
-      this.numberAnimate('tweenedNumber', this.tweenedNumber)
+
     },
     methods: {
+
       beforeEnter(el) {
         el.style.opacity = 0;
       },
@@ -162,43 +163,13 @@
       },
       leave(el, done) {
 
-      },
-      tween: function (startValue, endValue) {
-        var vm = this
-
-        function animate() {
-          if (TWEEN.update()) {
-            requestAnimationFrame(animate)
-          }
-        }
-
-        new TWEEN.Tween({tweeningValue: startValue})
-          .to({tweeningValue: endValue}, 500)
-          .onUpdate(function (object) {
-            vm.tweeningValue = object.tweeningValue.toFixed(0)
-          })
-          .start()
-
-        animate()
-      },
-      numberAnimate(str, newValue) {
-        let obj = {};
-        obj[str] = newValue;
-        TweenLite.to(this.$data, 0.5, obj);
       }
     },
     computed: {
-      photoNum() {
 
-      }
     },
     watch: {
-      number: function (newValue) {
-        this.numberAnimate('tweenedNumber', newValue)
-      },
-      'userInfo.photoNum': function (newValue) {
-        this.numberAnimate('userInfo.photoNum', newValue)
-      }
+
     }
   }
 </script>
@@ -226,7 +197,8 @@
 
   .user-img img {
     width: 100%;
-    height: 100%;
+    margin-top:50%;
+    transform:translateY(-50%);
   }
 
   .user-datum {
@@ -279,6 +251,7 @@
     justify-content: space-between;
     margin-right: 5vw;
     .user-menu-box {
+      position:relative;
       width: 18vw;
       height: 18vw;
       background: linear-gradient(180deg, #fff, #f1f1f1);

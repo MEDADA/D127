@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <keep-alive v-if="!$route.meta.cache">
-      <router-view />
+    <keep-alive>
+      <router-view v-if="$route.meta.keepalive" />
     </keep-alive>
-    <router-view v-if="$route.meta.cache"/>
+    <router-view v-if="!$route.meta.keepalive"/>
   </div>
 </template>
 
 <script>
+  import permission from './router/permission'
 export default {
   name: 'App',
   data(){

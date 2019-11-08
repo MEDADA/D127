@@ -5,7 +5,7 @@ export default {
   meta: {
     title: '数据图表',
     require: false,
-    cache: false
+    keepalive: false
   },
   component: chart,
   children:[
