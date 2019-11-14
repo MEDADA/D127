@@ -2,8 +2,12 @@
 
 ## Project setup
 ```
+npm i face-api.js canvas @tensorflow/tfjs-node
+
 npm install
 ```
+
+
 
 ### Compiles and hot-reloads for development
 ```
