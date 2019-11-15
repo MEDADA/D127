@@ -19,6 +19,8 @@ export const api = {
     //face api
     getUserFaceDescriptors:params => req('post','/faceDescriptors/getUserFaceDescriptors',params),
     saveFaceDescriptors:params => req('post','/faceDescriptors/saveFaceDescriptors',params),
+    getFaceDescriptors:params => req('post','/faceDescriptors/getFaceDescriptors',params),
+    getAllFaceName:params => req('get','/faceDescriptors/getAllFaceName',params),
     //egg api
     login:params  => req('post','/serviceEgg/login',params),
     register:params  => req('post','/serviceEgg/register',params),
