@@ -26,7 +26,6 @@
         </div>
       </div>
     </div>
-
     <div class="goodsList">
       <div class="processLine">
         <mu-linear-progress v-show="listLoading"></mu-linear-progress>

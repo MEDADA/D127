@@ -1,10 +1,11 @@
 import Router from './index';
-import utlis from '../utlis';
+import utlis from '../utlis/utlis';
 
 const user = () => import(/* webpackChunkName: "group-user"*/'@/views/user');
 const permissionManage = () => import(/* webpackChunkName: "group-permissionManage"*/'@/views/permissionManage');
-import store from '../store/store'
+import store from '../store/index'
 
+console.log("cons");
 export const asyncRouterMap = [
   {
     name: 'permissionManage',
@@ -31,6 +32,7 @@ let setInclude = (name = '', include = '',keepalive) => {
 Router.beforeEach((to, from, next) => {
   setInclude(to.name, from.meta.include,to.meta.keepalive);
   let token = utlis.getToken();
+  console.log(token);
   if (token) {
     //权限验证
     if (!store.state.permissionRoute) {
@@ -62,3 +64,4 @@ Router.beforeEach((to, from, next) => {
     }
   }
 });
+export default Router
