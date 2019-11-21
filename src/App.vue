@@ -10,3 +10,12 @@
 <style>
 
 </style>
+<script>
+  import permission from './router/permission'
+  export default {
+    name: "app",
+    data(){
+      return {}
+    }
+  }
+</script>

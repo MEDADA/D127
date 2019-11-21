@@ -10,7 +10,12 @@
             </div>
         </div>
         <div class="faceName-list">
-            <van-button type="default" v-for="(item,index) in faceListName" :key="index" @click="matchFaceSelectHandle(item)" :class="[{'match-face-active' : item === matchName},'faceName-item']">{{item}}</van-button>
+            <giant-row align="center">
+                <giant-col :span="6" v-for="(item,index) in faceListName" :key="index">
+                    <van-button type="default"  @click="matchFaceSelectHandle(item)" :class="[{'match-face-active' : item === matchName},'faceName-item']">{{item}}</van-button>
+                </giant-col>
+            </giant-row>
+
         </div>
         <div style="text-align: center;" v-if="faceImage === ''">
             <upload @uploadSuccess="uploadSuccess"></upload>
@@ -35,6 +40,8 @@
 
 <script>
     import upload from '../components/upload'
+    import giantRow from '../components/giant-row'
+    import giantCol from '../components/giant-col'
     import * as faceapi from 'face-api.js';
 
     export default {
@@ -164,7 +171,9 @@
             }
         },
         components: {
-            upload
+            upload,
+            'giant-row':giantRow,
+            'giant-col':giantCol
         }
     }
 </script>

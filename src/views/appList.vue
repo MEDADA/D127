@@ -26,6 +26,12 @@
           return{
             appList:[
               {
+                title:'GIANT UI',
+                icon:'',
+                intro:'Vue Giant UI Component',
+                path:'/giantUI'
+              },
+              {
                 title:'Pic',
                 icon:'',
                 intro:'Idea factory',

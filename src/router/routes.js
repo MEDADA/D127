@@ -17,6 +17,7 @@ const faceApiDemo= ()=>import(/* webpackChunkName: "group-faceApiDemo"*/'@/views
 import pictureFactory from '@/router/pictureFactory'
 import homeChild from '@/router/homeChild';
 import chart from '@/router/chart'
+import giantUI from '@/router/giantUI'
 export default [
     {
         name:'error',
@@ -135,6 +136,7 @@ export default [
     },
     pictureFactory,
     chart,
+    giantUI
 ]
 
 
