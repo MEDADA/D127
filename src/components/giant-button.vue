@@ -1,10 +1,15 @@
 <template>
-    <giant-ripple :disabled="disabled || loading">
-        <button :class="[{'giant-button-disabled':disabled},_btnClass,'giant-button',{'giant-button-loading':loading}]">
-            <i class="giant-button-loading-icon giant-icon giant-icon-loading" v-if="loading"></i>
-            <slot></slot>
-        </button>
-    </giant-ripple>
+    <button
+            @click="handleClick"
+            :class="[
+                {'giant-button-disabled':disabled},
+                _btnClass,
+                'giant-button',
+                {'giant-button-loading':loading}]">
+        <giant-ripple class="giant-button-ripple" :disabled="disabled || loading"></giant-ripple>
+        <i class="giant-button-loading-icon giant-icon giant-icon-loading" v-if="loading"></i>
+        <slot></slot>
+    </button>
 </template>
 
 <script>
@@ -16,6 +21,11 @@
             return {
                 _type: '',
                 btnClass: ''
+            }
+        },
+        methods: {
+            handleClick() {
+                this.$emit('click')
             }
         },
         props: {
@@ -68,6 +78,7 @@
     @import '../assets/css/var.scss';
 
     .giant-button {
+        position:relative;
         background-color: #fff;
         box-shadow: none;
         border: 1px solid #cccccc;
@@ -78,6 +89,7 @@
         padding: 0 10px;
         -webkit-user-select: none;
         transition: all .2s ease;
+        margin:0;
     }
 
     .giant-button-primary {
@@ -158,5 +170,11 @@
         -o-animation: rotate 1s linear infinite;
         animation: rotate 1s linear infinite;
     }
-
+    .giant-button-ripple{
+        position:absolute;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+    }
 </style>

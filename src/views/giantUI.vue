@@ -32,6 +32,10 @@
                     {
                         title: '布局',
                         componentPath: '/layoutDemo'
+                    },
+                    {
+                        title: '弹出层',
+                        componentPath: '/popupDemo'
                     }
                 ]
             }

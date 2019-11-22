@@ -1,6 +1,7 @@
-const layoutDemo = () => import(/* webpackChinkName: "group-LayoutDemo"*/'@/views/LayoutDemo')
 const giantUI = () => import(/* webpackChinkName: "group-LayoutDemo"*/'@/views/giantUI')
+const LayoutDemo = () => import(/* webpackChinkName: "group-LayoutDemo"*/'@/views/LayoutDemo')
 const ButtonDemo = () => import(/* webpackChinkName: "group-ButtonDemo"*/'@/views/ButtonDemo')
+const PopupDemo = () => import(/* webpackChinkName: "group-ButtonDemo"*/'@/views/PopupDemo')
 export default {
     name: 'giantUI',
     path: '/giantUI',
@@ -18,14 +19,24 @@ export default {
                 keepalive: true
             },
             component: ButtonDemo,
-        }, {
-            name: 'layoutDemo',
-            path: '/layoutDemo',
+        },
+        {
+            name: 'LayoutDemo',
+            path: '/LayoutDemo',
             meta: {
-                title: 'layoutDemo',
+                title: 'LayoutDemo',
                 keepalive: true
             },
-            component: layoutDemo,
+            component: LayoutDemo,
+        },
+        {
+            name: 'PopupDemo',
+            path: '/PopupDemo',
+            meta: {
+                title: 'PopupDemo',
+                keepalive: true
+            },
+            component: PopupDemo,
         }
     ]
 }

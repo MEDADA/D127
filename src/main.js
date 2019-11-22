@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/index'
+// lodash
+import _ from 'lodash'
 // api
 import api from './api/index'
 //muse UI
@@ -18,13 +20,18 @@ import VueLazyload from 'vue-lazyload'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
-
+//Giant UI
+import VModal from 'vue-js-modal'
+Vue.use(VModal,{
+    componentName:'giant-modal'
+});
 Vue.config.productionTip = false;
 
 
 Vue.use(Loading);
 Vue.use(VueLazyload);
 Vue.prototype.$api = api;
+Vue.prototype._ = _;
 new Vue({
     router,
     store,
