@@ -19,11 +19,16 @@ import VueLazyload from 'vue-lazyload'
 //vant
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import '../mock/index'
 Vue.use(Vant);
 //Giant UI
 import VModal from 'vue-js-modal'
 Vue.use(VModal,{
-    componentName:'giant-modal'
+    componentName:'giant-modal',
+    dynamic: true,
+    dynamicDefaults: {
+        title: ''
+    }
 });
 Vue.config.productionTip = false;
 

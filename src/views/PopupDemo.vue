@@ -1,33 +1,50 @@
 <template>
     <div>
-<!--        <giant-modal name="giantModal">-->
-<!--            giant modalgiant modalgiant modalgiant modal-->
-<!--        </giant-modal>-->
         <giant-button type="primary" @click="show">Popup Open</giant-button>
-        <giant-dialog :show="dialogShow"></giant-dialog>
+        <giant-dialog :show.sync="dialogShow">
+            <template v-slot:header>title</template>
+            <giant-list>
+                <giant-list-item v-for="(item,index) in list" :label="item.username" :value="item.date" :key="index">
+                </giant-list-item>
+            </giant-list>
+            <template v-slot:footer>
+                <giant-button>确定</giant-button>
+                <giant-button>取消</giant-button>
+            </template>
+        </giant-dialog>
     </div>
 </template>
 
 <script>
     import GiantButton from '../components/giant-button'
     import GiantDialog from '../components/giant-dialog'
+    import GiantList from '../components/giant-list'
+    import GiantListItem from '../components/giant-list-item'
     export default {
         name: "PopupDemo",
         data(){
             return {
-                dialogShow:false
+                dialogShow:false,
+                list:[]
             }
         },
         created(){
-
+            this.testMockApi()
         },
         methods:{
             show(){
                 this.dialogShow = true;
+            },
+            async testMockApi() {
+                let res = await this.$api.testMockApi({
+                    id:1
+                });
+                this.list = res.data.data;
+                console.log(res.data);
             }
         },
         components:{
-            GiantButton,GiantDialog
+            GiantButton,GiantDialog,GiantListItem,GiantList
         }
     }
 </script>

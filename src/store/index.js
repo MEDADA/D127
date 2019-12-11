@@ -13,22 +13,22 @@ export default new Vuex.Store({
     nav: [
       {
         value: 'app',
-        title: '',
+        title: 'home',
         icon: 'icon-app',
         path: '/home'
       }, {
         value: 'goodsList',
-        title: '',
+        title: 'goodsList',
         icon: 'icon-list',
         path: '/goodsList'
       }, {
         value: 'friends',
-        title: '',
+        title: 'friends',
         icon: 'icon-shouciliuchenghaoyouicon',
         path: '/friends'
       }, {
         value: 'user',
-        title: '',
+        title: 'user',
         icon: 'icon-user',
         path: '/user'
       }

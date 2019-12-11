@@ -82,8 +82,8 @@ let api = (method, url, data = null, config) => {
     if (_method === 'post') {
         return instance.post(url, data, config)
     } else if (_method === 'get') {
+        console.log(data);
         return instance.get(url, data, config)
     }
 };
-
-export default api;
+export default api

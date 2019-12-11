@@ -5,8 +5,10 @@
                 {'giant-button-disabled':disabled},
                 _btnClass,
                 'giant-button',
-                {'giant-button-loading':loading}]">
-        <giant-ripple class="giant-button-ripple" :disabled="disabled || loading"></giant-ripple>
+                {'giant-button-loading':loading},
+                {'giant-button-icon':icon}
+                ]">
+        <giant-ripple :class="['giant-button-ripple']" :disabled="disabled || loading"></giant-ripple>
         <i class="giant-button-loading-icon giant-icon giant-icon-loading" v-if="loading"></i>
         <slot></slot>
     </button>
@@ -14,7 +16,6 @@
 
 <script>
     import giantRipple from './giant-ripple'
-
     export default {
         name: "giantButton",
         data() {
@@ -44,6 +45,10 @@
             'loading': {
                 type: Boolean,
                 default: () => false
+            },
+            'icon':{
+                type:Boolean,
+                default:()=> false
             }
         },
         computed: {
@@ -115,7 +120,10 @@
         border-color: transparent;
         color: #fff;
     }
-
+    .giant-button-icon{
+        border-color: transparent;
+        color:#333;
+    }
     .giant-button-disabled {
         opacity: 0.5;
     }
@@ -170,6 +178,7 @@
         -o-animation: rotate 1s linear infinite;
         animation: rotate 1s linear infinite;
     }
+
     .giant-button-ripple{
         position:absolute;
         width:100%;

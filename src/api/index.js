@@ -10,6 +10,9 @@ export const api = {
     register:params  => req('post','/serviceEgg/register',params),
     getPermission:params => req('post','/serviceEgg/userPermission',params),
     getPermissionList:params => req('get','/serviceEgg/permissionList',params),
+    testMockApi:params => req('post','/mockApi/user',params),
+    getMockApiForm:params =>req('post','/mockApi/form',params),
+    getMockList:params =>req('post','/mockApi/list',params)
 };
 
 export default Object.assign(

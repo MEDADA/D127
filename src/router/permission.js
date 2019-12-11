@@ -30,6 +30,8 @@ let setInclude = (name = '', include = '',keepalive) => {
   }
 };
 Router.beforeEach((to, from, next) => {
+  next()
+  return false
   setInclude(to.name, from.meta.include,to.meta.keepalive);
   let token = utlis.getToken();
   console.log(token);

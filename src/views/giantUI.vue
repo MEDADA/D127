@@ -36,6 +36,18 @@
                     {
                         title: '弹出层',
                         componentPath: '/popupDemo'
+                    },
+                    {
+                        title: '表单',
+                        componentPath: '/GiantFormDemo'
+                    },
+                    {
+                        title: '列表',
+                        componentPath: '/GiantListDemo'
+                    },
+                    {
+                        title: '表格',
+                        componentPath: '/GiantTableDemo'
                     }
                 ]
             }

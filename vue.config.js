@@ -9,6 +9,13 @@ module.exports = {
                     '^/common': ''
                 }
             },
+            '/mockApi/*': {
+                target: 'http://localhost:1277', //开发
+                changeOrigin: true,
+                pathRewrite: {  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+                    '^/mockApi': ''
+                }
+            },
             '/images/*': {
                 target: 'http://localhost:3000', //开发
                 changeOrigin: true,

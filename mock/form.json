@@ -1,0 +1,11 @@
+{
+  "code": 200,
+  "data|20-30": [
+    {
+      "id|+1": "",
+      "inputType|1": "",
+      "disabled|1-2": "1",
+      "value": "@string('lower',1,20)"
+    }
+  ]
+}
