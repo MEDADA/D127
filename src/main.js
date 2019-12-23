@@ -22,14 +22,7 @@ import 'vant/lib/index.css';
 import '../mock/index'
 Vue.use(Vant);
 //Giant UI
-import VModal from 'vue-js-modal'
-Vue.use(VModal,{
-    componentName:'giant-modal',
-    dynamic: true,
-    dynamicDefaults: {
-        title: ''
-    }
-});
+
 Vue.config.productionTip = false;
 
 

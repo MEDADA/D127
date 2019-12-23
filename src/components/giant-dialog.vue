@@ -17,8 +17,15 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     import VModal from 'vue-js-modal'
-
+    Vue.use(VModal,{
+        componentName:'giant-modal',
+        dynamic: true,
+        dynamicDefaults: {
+            title: ''
+        }
+    });
     export default {
         name: "giant-dialog",
         data() {
@@ -57,9 +64,6 @@
                 this.$emit('update:show', false);
                 this.$emit('beforeClose')
             }
-        },
-        components: {
-            'foo-modal': VModal
         }
     }
 </script>

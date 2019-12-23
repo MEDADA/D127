@@ -1,8 +1,10 @@
+const path = require('path');
 module.exports = {
     mode:'production',
-    alias:{
-        '~':resolve(__dirname,'src'),
-        'component':path.resolve(__dirname,'../component'),
-        'http':path.resolve(__dirname,'../http'),
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, "src"),
+            '_c': path.resolve(__dirname, "src/components"),
+        }
     }
 };

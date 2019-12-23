@@ -24,9 +24,6 @@
     import giantButton from '@/components/giant-button'
     export default {
         name: "ButtonDemo",
-        created(){
-            console.log(giantButton)
-        },
         components:{
             'giant-button':giantButton
         }

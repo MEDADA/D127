@@ -1,16 +1,39 @@
 <template>
-    <div class="giant-input-wrap">
-        <input type="text" :value="value" @input="_input($event)"
-               :class="['giant-input',{'giant-input-disabled':disabled}]" :disabled="disabled">
+    <div :class="['giant-input-wrap',{'giant-input-fullWidth':fullWidth}]">
+        <input
+                v-if="type === 'text'"
+                type="text"
+                :value="value"
+                :class="['giant-input',{'giant-input-disabled':disabled}]"
+                :disabled="disabled"
+                @input="_input($event)"
+                @change="_change"
+        />
+        <textarea
+                v-if="type === 'textarea'" cols="10" rows="3"
+                :value="value"
+                :class="['giant-input',{'giant-input-disabled':disabled}]"
+                :disabled="disabled"
+                @input="_input($event)"
+                @change="_change"
+        ></textarea>
+        <transition name="fade">
+            <div class="giant-input-error" v-if="errorText !== ''">
+                {{errorText}}
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
+    import lodash from 'lodash'
     export default {
         name: "giant-input",
         data() {
             return {
-                val: ''
+                val: '',
+                componentName:'input',
+                errorText:''
             }
         },
         props: {
@@ -22,37 +45,34 @@
             'disabled': {
                 default: false,
                 type: Boolean
+            },
+            'fullWidth': {
+                default: false,
+                type: Boolean
+            },
+            'type':{
+                default:'text',
+                type:String,
             }
         },
         methods: {
             _input(e) {
-                this.$emit('input', e.target.value)
+                this.$emit('input', e.target.value);
+                console.log('giant-input : input',e.target.value);
+                if (this.$parent.fieldValidate) {
+                    this.fieldValidate()
+                }
+            },
+            fieldValidate: lodash.debounce(function () {
+                this.$parent.fieldValidate()
+            }, 500,{leading:true}),
+            _change(e) {
+                console.log(e);
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .giant-input {
-        border: 1px solid #ccc;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0);
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        transition:all .2s;
-        &:focus {
-            border-color: rgba(135,206,250,0.5);
-            box-shadow:0 0 5px 1px rgba(135,206,250,0.5)
-        }
-    }
-
-    .giant-input-disabled {
-
-    }
-
-    .giant-input-focus {
-        border-color: #1989fa;
-    }
+    @import "../assets/css/giant-ui.scss";
 </style>

@@ -95,6 +95,7 @@
         -webkit-user-select: none;
         transition: all .2s ease;
         margin:0;
+        outline:none;
     }
 
     .giant-button-primary {

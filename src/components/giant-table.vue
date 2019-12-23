@@ -1,23 +1,34 @@
 <template>
     <table class="giant-table">
-        <thead slot="header" style="display:flex;" role="group" aria-label="Basic example">
-        <tr v-for="(title,index) in column" style="flex:1;" :key="index">{{title}}</tr>
+        <thead style="display:flex;">
+            <tr style="flex:1;" v-for="tr in tableColumns">{{tr.label}}</tr>
         </thead>
         <graggable
                 :list="list"
-                tag="tbody"
+                tag="div"
                 @change="_change"
                 :group="group"
                 class="giant-table-tbody"
                 ghostClass="ghost"
                 :animation="200"
-        >
-            <transition-group type="transition" name="flip-list">
-                <tr v-for="(item,index) in list" :key="index" class="giant-table-tr">
-                    <td v-for="title in column" :key="title.name" style="flex:1;">{{item[title]}}</td>
-                </tr>
-            </transition-group>
+                >
+            <tr v-for="(row,index) in list" :key="index" class="giant-table-tr">
+                <td v-for="(tr,tdInd) in tableColumns" :key="tdInd" style="flex:1;">
+                    <span>{{row[tr.prop]}}</span>
+                </td>
+                <slot :row="row" v-if="$slots"></slot>
+            </tr>
+            <div
+                    slot="footer"
+            >
+                <div class="giant-table-nodata"
+                     v-if="!list || list && list.length === 0"
+                >
+                    暂无数据
+                </div>
+            </div>
         </graggable>
+        <slot name="footer"></slot>
     </table>
 </template>
 
@@ -38,11 +49,32 @@
             'column': {
                 type: Array,
                 default: () => []
+            },
+            'control': {
+                type: String,
+                default: () => ''
             }
         },
-        date(){
+        data() {
             return {
-
+                tableColumns:[],
+                columnLength:0
+            }
+        },
+        mounted(){
+            if(this.$slots.default){
+                let slots = this.$slots.default;
+                console.log(slots);
+                this.tableColumns = slots.map((i)=>{
+                    if(i.componentOptions && i.componentOptions.tag === 'giant-table-column'){
+                        if(i.componentOptions.propsData){
+                            return i.componentOptions.propsData
+                        }else{
+                            return ''
+                        }
+                    }
+                }).filter(i=>typeof i !== 'undefined');
+                console.log(this.tableColumns);
             }
         },
         methods: {
@@ -57,53 +89,5 @@
 </script>
 
 <style scoped lang="scss">
-    .giant-table {
-        width:100%;
-        .giant-table-tbody{
-            padding:0;
-        }
-        thead {
-            border-left: 1px solid #ccc;
-            border-right: 1px solid #ccc;
-            border-top: 1px solid #ccc;
-            text-align: left;
-            background-color: #f5f5f5;
-            transform: translateY(1px);
-
-            tr {
-                border-right: 1px solid #ccc;
-                padding:10px 5px;
-                &:last-child {
-                    border-right: 0;
-                }
-            }
-
-        }
-
-        .giant-table-tr {
-            border-bottom: 1px solid #ccc;
-            border-top: 1px solid #ccc;
-            border-left: 1px solid #ccc;
-            display: flex;
-            margin-top: -1px;
-        }
-
-        td {
-            border-right: 1px solid #ccc;
-            flex: 1;
-            text-align:left;
-            display: flex;
-            justify-content: start;
-            padding:10px 5px;
-            transition: transform 0.5s;
-        }
-    }
-
-    .flip-list-move {
-        transition: transform 0.5s;
-    }
-    .ghost {
-        opacity: 0.5;
-        background: #c8ebfb;
-    }
+    @import '../assets/css/giant-ui';
 </style>

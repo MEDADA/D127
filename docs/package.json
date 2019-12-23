@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "docs:dev": "vuepress dev",
+    "docs:build": "vuepress build"
+  },
+  "dependencies": {
+    "highlight.js": "^9.17.1",
+    "vue-highlight.js": "^3.1.0",
+    "vue-touch-ripple": "^3.0.0",
+    "vuedraggable": "^2.23.2",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.0",
+    "sass-loader": "^7.3.1",
+    "sass-resources-loader": "^2.0.0"
+  }
+}
