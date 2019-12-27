@@ -23,7 +23,8 @@ module.exports = {
                     '/guide/layout',
                     '/guide/form',
                     '/guide/dialog',
-                    '/guide/list'
+                    '/guide/list',
+                    '/guide/icon'
                 ]
             },
             {
