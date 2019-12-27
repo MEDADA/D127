@@ -46,9 +46,9 @@
                 type: Boolean,
                 default: () => false
             },
-            'icon':{
-                type:Boolean,
-                default:()=> false
+            'icon': {
+                type: Boolean,
+                default: () => false
             }
         },
         computed: {
@@ -83,7 +83,7 @@
     @import '../assets/css/var.scss';
 
     .giant-button {
-        position:relative;
+        position: relative;
         background-color: #fff;
         box-shadow: none;
         border: 1px solid #cccccc;
@@ -94,8 +94,12 @@
         padding: 0 10px;
         -webkit-user-select: none;
         transition: all .2s ease;
-        margin:0;
-        outline:none;
+        margin: 0;
+        outline: none;
+
+        &:hover {
+            opacity:0.8;
+        }
     }
 
     .giant-button-primary {
@@ -121,12 +125,17 @@
         border-color: transparent;
         color: #fff;
     }
-    .giant-button-icon{
+
+    .giant-button-icon {
         border-color: transparent;
-        color:#333;
+        color: #333;
     }
+
     .giant-button-disabled {
         opacity: 0.5;
+        &:hover{
+            opacity:0.5;
+        }
     }
 
     @-webkit-keyframes rotate {
@@ -180,11 +189,11 @@
         animation: rotate 1s linear infinite;
     }
 
-    .giant-button-ripple{
-        position:absolute;
-        width:100%;
-        height:100%;
-        left:0;
-        top:0;
+    .giant-button-ripple {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
     }
 </style>

@@ -8,16 +8,16 @@
             <giant-form-item label="switch"
                              :rule="[{required:true}]">
                 <giant-switch
-                        v-model="ruleForm.switch1"></giant-switch>
+                    v-model="ruleForm.switch1"></giant-switch>
                 {{ruleForm.switch1}}
             </giant-form-item>
             <giant-form-item label="radio1"
                              :rule="[{required:true}]">
                 <giant-radio
                         style="margin-right:15px;"
-                        v-model="ruleForm.radio1" label="男">男</giant-radio>
+                    v-model="ruleForm.radio1" label="男">男</giant-radio>
                 <giant-radio
-                        v-model="ruleForm.radio1" label="女">女</giant-radio>
+                    v-model="ruleForm.radio1" label="女">女</giant-radio>
             </giant-form-item>
             <giant-form-item
                     prop="textarea"
@@ -33,7 +33,8 @@
                 <giant-select
                         v-model="ruleForm.selectVal"
                         :options="option"
-                        label="label"></giant-select>
+                        label="label">
+                </giant-select>
             </giant-form-item>
             <giant-form-item label="多选框" prop="selectVal2" :rule="{required:true}">
                 <giant-select

@@ -11,7 +11,10 @@
                     :label="props.label"
                     :track-by="props.value"
                     :placeholder="placeholder"
-            ></multi-select>
+                    :custom-label="customLabelEvent"
+                    :show-labels="false"
+            >
+            </multi-select>
         </div>
         <transition name="fade">
             <div class="giant-input-error" v-if="errorText !== ''">
@@ -28,7 +31,7 @@
         name: "giant-select",
         data() {
             return {
-                errorText: ''
+                errorText: '',
             }
         },
         props: {
@@ -65,8 +68,10 @@
             }
         },
         methods: {
+            customLabelEvent ({label}) {
+                return `${label}`
+            },
             _input(e) {
-                console.log(e);
                 this.$emit('input', e);
                 if (this.$parent.fieldValidate) {
                     this.fieldValidate()

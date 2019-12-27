@@ -1,3 +1,6 @@
+body{
+  -webkit-tap-highlight-color: transparent;  //手机touch出现的蓝色背景关闭
+}
 .giant-input-wrap {
   display:flex;
   position:relative;
@@ -66,6 +69,7 @@
 }
 .giant-form-item-label{
   margin-right:5px;
+  white-space: nowrap;
 }
 .giant-form-item-error{
   position:absolute;

@@ -2,16 +2,17 @@
     <div>
         <giant-button type="primary" @click="show">Popup Open</giant-button>
         <giant-dialog :show.sync="dialogShow">
-            <template v-slot:header>title</template>
+            <template #header>title</template>
             <giant-list>
                 <giant-list-item v-for="(item,index) in list" :label="item.username" :value="item.date" :key="index">
                 </giant-list-item>
             </giant-list>
-            <template v-slot:footer>
+            <template #footer>
                 <giant-button>确定</giant-button>
                 <giant-button>取消</giant-button>
             </template>
         </giant-dialog>
+
     </div>
 </template>
 
@@ -41,7 +42,7 @@
                 });
                 this.list = res.data.data;
                 console.log(res.data);
-            }
+            },
         },
         components:{
             GiantButton,GiantDialog,GiantListItem,GiantList

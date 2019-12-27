@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="giant-list-row">
-            <div class="giant-list-row-item">
+            <div class="giant-list-row-item" v-if="label">
                 <slot name="label">
                     {{label}}
                 </slot>

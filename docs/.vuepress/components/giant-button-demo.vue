@@ -22,7 +22,8 @@
 
 <script>
     export default {
-        name: "ButtonDemo"
+        name: "giant-button-demo",
+
     }
 </script>
 

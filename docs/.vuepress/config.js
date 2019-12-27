@@ -18,8 +18,18 @@ module.exports = {
             {
                 title:'组件',
                 children:[
-                    '/components/table',
-                    '/components/button',
+                    '/guide/table',
+                    '/guide/button',
+                    '/guide/layout',
+                    '/guide/form',
+                    '/guide/dialog',
+                    '/guide/list'
+                ]
+            },
+            {
+                title:'插件',
+                children:[
+                    '/guide/face-api'
                 ]
             }
         ]
