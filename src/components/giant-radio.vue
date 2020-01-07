@@ -9,6 +9,7 @@
         <span v-if="$slots" style="margin-left:5px;">
             <slot></slot>
         </span>
+        <span>{{label}}</span>
         <input type="radio" class="giant-radio-original" :value="label">
     </span>
 </template>
@@ -46,6 +47,7 @@
         user-select:none;
         display:flex;
         align-items: center;
+        padding-right:10px;
         .giant-radio-inner {
             display:inline-block;
             border:1px solid skyblue;

@@ -24,7 +24,8 @@ module.exports = {
                     '/guide/form',
                     '/guide/dialog',
                     '/guide/list',
-                    '/guide/icon'
+                    '/guide/icon',
+                    '/guide/dynamic-form'
                 ]
             },
             {

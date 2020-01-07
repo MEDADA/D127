@@ -1,7 +1,7 @@
 <template>
     <div class="giant-form-item">
-        <span v-if="label !== ''" class="giant-form-item-label">
-            <span class="giant-red-star" v-if="rule.required || rule.find(i=>i.required)"></span>
+        <span v-if="label !== ''" class="giant-form-item-label" :style="{'min-width':labelWidth+'px'}">
+<!--            <span class="giant-red-star" v-if="rule.required || rule.find(i=>i.required)"></span>-->
             {{label}}
         </span>
         <slot></slot>
@@ -27,6 +27,10 @@
             'label':{
                 type:String,
                 default:''
+            },
+            'labelWidth':{
+                type:Number,
+                default:()=>null
             }
         },
         methods: {
