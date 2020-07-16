@@ -17,7 +17,7 @@
     "core-js": "^3.3.2",
     "echarts": "^4.4.0",
     "face-api.js": "^0.21.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mockjs": "^1.1.0",
     "muse-ui": "^3.0.2",
     "muse-ui-loading": "^0.2.0",
